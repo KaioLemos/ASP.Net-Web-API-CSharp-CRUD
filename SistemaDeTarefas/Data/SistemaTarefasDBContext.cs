@@ -6,7 +6,7 @@ namespace SistemaDeTarefas.Data
 {
     public class SistemaTarefasDBContext : DbContext //foi dado um import no EntityFramework Core para o DbContext // : >>> significa que SistemaTarefasDBContext está herdando de DBContext
     {
-        //CONSTRUTOR >>>Construtores são basicamente funções de inicialização de uma classe, as quais são invocadas no momento em que objetos desta classe são criadas. Eles permitem inicializar campos internos da classe e alocar recursos que um objeto da classe possa demandar, tais como memória, arquivos, semáforos, soquetes, etc.
+        
         public SistemaTarefasDBContext(DbContextOptions<SistemaTarefasDBContext> options)
             : base(options)
         {
@@ -15,10 +15,11 @@ namespace SistemaDeTarefas.Data
         public DbSet<UsuarioModel> Usuarios { get; set; }
         public DbSet<TarefaModel> Tarefas { get; set; }
 
+        //ADICIONAR O MAPEAMENTO
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new UsuarioMap());
-            modelBuilder.ApplyConfiguration(new TarefaMap());
+            modelBuilder.ApplyConfiguration(new UsuarioMap());  //Adicionado o mapeamento (Data>Map>UsuarioMap)
+            modelBuilder.ApplyConfiguration(new TarefaMap());   ////Adicionado o mapeamento (Data>Map>TarefaMap)
             base.OnModelCreating(modelBuilder);
         }
     }

@@ -1,0 +1,126 @@
+﻿
+ASP.Net Web API - C# - CRUD
+
+OBJETIVO:
+
+	CRUD completo de Tarefas.
+	Criar um serviço onde qualquer front ou um aplicativo poderá consumir essa API para cadastrar Tarefas.
+	Nesse CRUD será cadastrado Usuários e Tarefas, com a possibilidade de vincular um determinado Usuário com qual Tarefa esse Usuário está trabalhando.
+
+
+
+DESENVOLVIMENTO:
+
+	Para criar o projeto foi utilizado:
+		ASP.Net Core Web API
+		Framework .NET 6.0
+		Microsoft.EntityFrameworkCore 6.0 (pelo Manage NuGet Packages)
+		Microsoft.EntityFrameworkCore.Design 6.0 (pelo Manage NuGet Packages)
+		Microsoft.EntityFrameworkCore.SqlServer 6.0 (pelo Manage NuGet Packages)
+		Microsoft.EntityFrameworkCore.Tools 6.0 (pelo Manage NuGet Packages)
+
+
+
+ETAPAS DO CÓDIGO:
+
+	Criado Pasta Models com:
+		UsarioModel
+		TarefaModel
+
+	Criado Pasta Controllers com: (Add > Controller > API Controller - Empty)
+		TarefaController
+		UsuarioController
+
+	Criado Pasta Data (para dar o contexto do Banco de Dados):
+		SistemaTarefasDBContext
+
+	Criado Pasta Repositório para colocar as configurações do Entity FrameWork e configurar o Banco de Dados:
+		Criado Pasta Interfaces
+			IUsuarioRepositorio
+		UsuarioRepositorio (para implementar o método propriamente dito por herança da interface)
+		TarefasRepositorio
+
+	No appsettings:
+		Foi configurado para o banco com autenticação do Windows e não pelo SQL server
+
+	No Program.cs:
+		Configuracoes foram feitas para o Contexto e para o repositorio
+			Contexto >>> Config do EntityFramewrok do Sql Server
+			Repositorio >>> Injecoes de dependecia
+
+	Criado Pasta Enum:
+		StatusTarefa
+	
+	Dentro da pasta Data:
+		Criado Pasta Map:
+			UsuarioMap
+			TarefaMap
+		Adicionado esse mapeamento para dentro o Contexto em SistemaTarefasDBContext
+	
+	Gerado a Migration: (Graças ao Entity Framework)
+		No Package Manage Console foi usado o comando:
+			Add-Migration InitialDB -Context SistemaTarefasDBContext
+		Para rodar a Migration:
+			Update-Database -Context SistemaTarefasDBContext
+	
+	No Sql Server Management Studio:
+		Banco de Dados > DB_SistemaTarefas (esse que foi geradodo)
+			comandos:
+				select*from Usuarios
+				select*from Tarefas
+	
+	No Controller:
+		UsuarioController
+			Criado um construtor para injetar a IUsuario
+		TarefaController
+			Criado um construtor para injetar a ITarefa
+
+	Em Models:
+		TarefaModel (vincular com o Usuario)
+
+	Em Data:
+		Map
+			TarefaMap (Mapemaento da propriedade UsuarioId e Relacionamento para criar o relaciomanento do Usuario com a Tarefa)
+	
+	No Package Manage Console foi usado o comando:\
+		Add-Migration VinculoTarefaUsuario -Context SistemaTarefasDBContext
+			(criado o arquivo VinculoTarefaUsuario)
+
+	Para rodar a última MIGRATION no SQL Server:
+		No Package Manage Console foi usado o comando:
+			Update-Database -Context SistemaTarefasContext
+
+	No Repositorio criado:
+		ITarefaRepositorio
+
+
+
+TESTE NO SWAGGER (já em sincronia com o banco de dados):
+
+	POST:
+		{
+			"nome": "string",
+			"email": "string"
+		}
+	
+	GET Todos E PorUsuario:
+		{
+			"id": 1,
+			"nome": "string",
+			"email": "string"
+		}
+	
+	PUT:
+		Colocar o id e o json igual do Post
+	
+	Delete:
+		Colocar o id
+
+
+
+
+
+
+
+
+

@@ -17,7 +17,7 @@ namespace SistemaDeTarefas.Controllers
         }
 
         // BUSCAR TODOS USUARIOS
-        [HttpGet]
+        [HttpGet] //api/usuario
         public async Task<ActionResult<List<UsuarioModel>>> BuscarTodosUsuarios()
         {
             List<UsuarioModel> usuarios = await _usuarioRepositorio.BuscarTodosUsuarios();
@@ -25,7 +25,7 @@ namespace SistemaDeTarefas.Controllers
         }
 
         // BUSCAR POR ID
-        [HttpGet("{id}")] // api/usuario/id
+        [HttpGet("{id}")]   // api/usuario/id
         public async Task<ActionResult<List<UsuarioModel>>> BuscarPorId(int id)
         {
             UsuarioModel usuario = await _usuarioRepositorio.BuscarPorId(id);
@@ -33,7 +33,7 @@ namespace SistemaDeTarefas.Controllers
         }
 
         //  CADASTRAR
-        [HttpPost]
+        [HttpPost]  // api/usuario
         public async Task<ActionResult<UsuarioModel>> Cadastrar([FromBody] UsuarioModel usuarioModel)
         {
             UsuarioModel usuario = await _usuarioRepositorio.Adicionar(usuarioModel);
@@ -41,7 +41,7 @@ namespace SistemaDeTarefas.Controllers
         }
 
         //  ATUALIZAR
-        [HttpPut("{id}")]
+        [HttpPut("{id}")]   // api/usuario/id 
         public async Task<ActionResult<UsuarioModel>> Atualizar([FromBody] UsuarioModel usuarioModel, int id)
         {
             usuarioModel.Id = id;
@@ -49,7 +49,7 @@ namespace SistemaDeTarefas.Controllers
             return Ok(usuario);
         }
         // APAGAR
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}")]    // api/usuario/id
         public async Task<ActionResult<UsuarioModel>> Apagar(int id)
         {
             bool apagado = await _usuarioRepositorio.Apagar(id);

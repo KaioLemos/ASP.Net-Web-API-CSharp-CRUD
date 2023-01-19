@@ -12,9 +12,13 @@ namespace SistemaDeTarefas.Data.Map
             builder.Property(x => x.Nome).IsRequired().HasMaxLength(255);
             builder.Property(x => x.Descricao).IsRequired().HasMaxLength(1000);
             builder.Property(x => x.Status).IsRequired();
-            builder.Property(x => x.UsuarioId); //mapeamento da propriedade UsuarioI
 
-            builder.HasOne(x => x.Usuario); // Relacionamento. Tem um usuario vinculado a ele. Dessa forma cria uma relacao do Usuario com a Tarefa
+            //MAPEAMENTO DA PROPRIEDADE UsuarioId
+
+            builder.Property(x => x.UsuarioId);
+
+            //RELACIONAMENTO
+            builder.HasOne(x => x.Usuario); //Tem um usuario vinculado a ele. Dessa forma cria uma relacao do Usuario com a Tarefa
 
         }
     }
