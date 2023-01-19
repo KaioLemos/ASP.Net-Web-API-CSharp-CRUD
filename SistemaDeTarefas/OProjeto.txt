@@ -38,14 +38,13 @@ ETAPAS DO CÓDIGO:
 		Criado Pasta Interfaces
 			IUsuarioRepositorio
 		UsuarioRepositorio (para implementar o método propriamente dito por herança da interface)
-		TarefasRepositorio
 
 	No appsettings:
 		Foi configurado para o banco com autenticação do Windows e não pelo SQL server
 
 	No Program.cs:
 		Configuracoes foram feitas para o Contexto e para o repositorio
-			Contexto >>> Config do EntityFramewrok do Sql Server
+			Contexto >>> Config do EntityFramework do Sql Server
 			Repositorio >>> Injecoes de dependecia
 
 	Criado Pasta Enum:
@@ -91,31 +90,75 @@ ETAPAS DO CÓDIGO:
 			Update-Database -Context SistemaTarefasContext
 
 	No Repositorio criado:
-		ITarefaRepositorio
+		Interfaces > ITarefaRepositorio
+		TarefaRepositorio
 
+	No Prgram.cs:
+		Registrar o ultimo repositorio ( COnfigurar as injecoes de dependencia do repositorio)
+
+	No Controller:
+		TarefaController
+			Criado um construtor para injetar a ITarefa
+
+	Em Repositorio:
+		TarefaRepositorio:
+			No método BuscarPorId e BuscarTodasTarefas > INCLUDE(X => x.Usuario).
+			Para qnd consumir a API já ter as informacoes do usuário que esta vinculado com essa tarefa.
 
 
 TESTE NO SWAGGER (já em sincronia com o banco de dados):
+	
+	USUARIO:
 
-	POST:
-		{
-			"nome": "string",
-			"email": "string"
-		}
+		POST:
+			{
+				"nome": "string",
+				"email": "string"
+			}
 	
-	GET Todos E PorUsuario:
-		{
-			"id": 1,
-			"nome": "string",
-			"email": "string"
-		}
+		GET Todos E PorUsuario:
+			{
+				"id": 1,
+				"nome": "string",
+				"email": "string"
+			}
 	
-	PUT:
-		Colocar o id e o json igual do Post
+		PUT:
+			Colocar o id e o json igual do Post
 	
-	Delete:
-		Colocar o id
+		Delete:
+			Colocar o id
 
+	TAREFA:
+
+		POST:
+			{
+				"nome": "string",
+				"descricao": "string"
+				"status": 1
+			}
+
+		GET Todos E PorUsuario:
+			{
+				"id": 1,
+				"nome": "string",
+				"descricao": "string",
+				"status": 1,
+				"usuarioId": null,
+				"usuario": null				
+			}
+
+		PUT:
+			{
+				"id": 1,
+				"nome": "string",
+				"descricao": "string",
+				"status": 1,
+				"usuarioId": 1,
+			}
+		
+
+				
 
 
 
