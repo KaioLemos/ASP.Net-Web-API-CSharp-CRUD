@@ -6,7 +6,7 @@ using SistemaDeTarefas.Repositorios.Interfaces;
 
 namespace SistemaDeTarefas.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]")]  // Esse é o padrao da rota da API. >>> portaDoServidorQVaiRodarAApi/api/UsuarioController >>> nesse caso a portaDoServidor = localhost
     [ApiController]
     public class UsuarioController : ControllerBase
     {

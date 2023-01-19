@@ -4,7 +4,7 @@ using SistemaDeTarefas.Models;
 
 namespace SistemaDeTarefas.Data
 {
-    public class SistemaTarefasDBContext : DbContext //foi dado um import no EntityFramework Core para o DbContet
+    public class SistemaTarefasDBContext : DbContext //foi dado um import no EntityFramework Core para o DbContext // : >>> significa que SistemaTarefasDBContext está herdando de DBContext
     {
         //CONSTRUTOR >>>Construtores são basicamente funções de inicialização de uma classe, as quais são invocadas no momento em que objetos desta classe são criadas. Eles permitem inicializar campos internos da classe e alocar recursos que um objeto da classe possa demandar, tais como memória, arquivos, semáforos, soquetes, etc.
         public SistemaTarefasDBContext(DbContextOptions<SistemaTarefasDBContext> options)

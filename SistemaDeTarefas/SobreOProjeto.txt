@@ -1,7 +1,34 @@
 ﻿
 ASP.Net Web API - C# - CRUD
 
+OBJETIVO:
 CRUD completo de Tarefas.
 Criar um serviço onde qualquer front ou um aplicativo poderá consumir essa API para cadastrar Tarefas.
 Nesse CRUD será cadastrado Usuários e Tarefas, com a possibilidade de vincular um determinado Usuário com qual Tarefa esse Usuário está trabalhando.
 
+
+
+DESENVOLVIMENTO:
+Para criar o projeto foi utilizado:
+	ASP.Net Core Web API
+	Framework .NET 6.0
+	Microsoft.EntityFrameworkCore 6.0 (pelo Manage NuGet Packages)
+	Microsoft.EntityFrameworkCore.Design 6.0 (pelo Manage NuGet Packages)
+	Microsoft.EntityFrameworkCore.SqlServer 6.0 (pelo Manage NuGet Packages)
+	Microsoft.EntityFrameworkCore.Tools 6.0 (pelo Manage NuGet Packages)
+
+ETAPAS DO CÓDIGO:
+Criado Pasta Models com:
+	UsarioModel
+	TarefaModel
+
+Criado Pasta Controllers com: (Add > Controller > API Controller - Empty)
+	TarefaController
+	UsuarioController
+
+Criado Pasta Data (para dar o contexto do Banco de Dados):
+	SistemaTarefasDBContext
+
+Criado Pasta Repositório para colocar as configurações do Entity FrameWork e configurar o Banco de Dados:
+	Criado Pasta Interfaces
+		IUsuarioRepositorio
