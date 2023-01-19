@@ -1,0 +1,7 @@
+﻿
+ASP.Net Web API - C# - CRUD
+
+CRUD completo de Tarefas.
+Criar um serviço onde qualquer front ou um aplicativo poderá consumir essa API para cadastrar Tarefas.
+Nesse CRUD será cadastrado Usuários e Tarefas, com a possibilidade de vincular um determinado Usuário com qual Tarefa esse Usuário está trabalhando.
+
